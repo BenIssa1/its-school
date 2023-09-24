@@ -1,0 +1,12 @@
+[[redirects]]
+  from = "/api/*"
+  to = "https://ra-viv-git-master-benissa1.vercel.app/api/:splat"
+  host = "ra-viv-git-master-benissa1.vercel.app"
+  status = 200
+  force = true
+
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
