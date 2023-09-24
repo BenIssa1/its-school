@@ -55,7 +55,7 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="list-none cursor-pointer mr-8">
-            <Link to='dashboard-formation'
+            <Link to='/mes/formations'
               className='font-bold transition-all duration-300 hover:text-SkyBlue'>
                 Mes formations
             </Link>

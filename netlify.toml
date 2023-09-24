@@ -1,7 +1,7 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://ra-viv-git-master-benissa1.vercel.app/api/:splat"
-  host = "ra-viv-git-master-benissa1.vercel.app"
+  to = "https://recrutement-m56g04i0w-benissa1.vercel.app/api/:splat"
+  host = "recrutement-m56g04i0w-benissa1.vercel.app"
   status = 200
   force = true
 
