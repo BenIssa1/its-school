@@ -12,7 +12,8 @@ import {
   RegisterFormation, 
   PrivateRoute,
   PrivateRouteUnauthencited,
-  StudentFormation
+  StudentFormation,
+  Profile
 } from "./components/index";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
@@ -50,6 +51,10 @@ function App() {
 
           <PrivateRoute path={"/mes/formations"} >
             <StudentFormation />
+          </PrivateRoute>
+
+          <PrivateRoute path={"/profile"} >
+            <Profile />
           </PrivateRoute>
         </Switch>
 

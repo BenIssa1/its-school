@@ -12,6 +12,7 @@ import { SignIn } from "./SignIn/SignIn";
 import { PrivateRoute } from "../utils/PrivateRoute";
 import { PrivateRouteUnauthencited } from "../utils/PrivateRouteUnauthencited";
 import { StudentFormation } from "../components/formation/StudentFormation";
+import Profile from "../components/profile/Profile";
 export {
     NavBar, 
     About, 
@@ -26,5 +27,6 @@ export {
     RegisterFormation,
     PrivateRoute,
     PrivateRouteUnauthencited,
-    StudentFormation
+    StudentFormation,
+    Profile
 }

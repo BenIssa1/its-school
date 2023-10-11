@@ -14,6 +14,7 @@ export const StudentFormation = () => {
     const fetchData = async () => {
         // get the data from the api
         const response = await Axios.get(`/api/v1/student/formation/list`);
+        console.log(response.data.formations)
 
         setDatas(response.data.formations);
     };
@@ -67,10 +68,12 @@ export const StudentFormation = () => {
                     <thead>
                         <tr>
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Formation</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nom-Prenom</th>
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant deja paye</th>
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre d'echeance</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reste d'echeance</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant deja paye</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reste a paye</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type de formation</th>
                             <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
                     </thead>
@@ -81,10 +84,12 @@ export const StudentFormation = () => {
                       datas.map((data, index) => (
                         <tr key={index}>
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">{data.formation}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{data.studentInfo.nom}-{data.studentInfo.prenom}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{data.montant}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{data.montantPaye}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{data.nombreEcheance}</td>
-                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{data.nombreEcheancePaye}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{data.montantPaye}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{data.montant - data.montantPaye}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">{data.type_formation}</td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             
                                 {data.nombreEcheance == data.nombreEcheancePaye ? (
