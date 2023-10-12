@@ -165,7 +165,7 @@ const SignUp = (props) => {
                     {
                         messageShowBoolean && (
                             <div className="bg-blue-50 border border-blue-200 text-sm text-blue-600 rounded-md p-4 mt-5" role="alert">
-                                Vous serez regiriger vers le moyen de paiement dans queques secondes.
+                                Vous serez rediriger vers le moyen de paiement dans queques secondes.
                             </div>
                         )
                     }
@@ -428,13 +428,18 @@ const SignUp = (props) => {
                             {/* Choix de la formation */}
 
                             <div className="py-8">
+                                <div className="flex mb-4">
+                                        <span className='flex justify-center border rounded-full w-6 h-6 mr-3 border-blue-500 text-blue-500'>3</span>
+
+                                        <span className='font-bold text-PrimaryBlue '> Adresse</span>
+                                </div>
                                 <div className="flex  flex-wrap mb-5">
                                     <div className="w-full">
                                         <label 
-                                            htmlFor="formation" 
+                                            htmlFor="type_formation" 
                                             className={`block text-sm font-semibold text-gray`}
                                         >
-                                            Choisir une formation
+                                            Choix de la formation
                                         </label>
                                         <div className="mt-1 w-full">
                                             <select
