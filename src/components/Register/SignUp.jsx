@@ -164,13 +164,13 @@ const SignUp = (props) => {
               {message && <p>{message}</p>}
             </div>
 
-            {
-              messageShowBoolean && (
-                <div className="bg-blue-50 border border-blue-200 text-sm text-blue-600 rounded-md p-4 mt-5" role="alert">
-                  Vous serez regiriger vers le moyen de paiement dans queques secondes.
-                </div>
-              )
-            }
+                    {
+                        messageShowBoolean && (
+                            <div className="bg-blue-50 border border-blue-200 text-sm text-blue-600 rounded-md p-4 mt-5" role="alert">
+                                Vous serez regiriger vers le moyen de paiement dans queques secondes.
+                            </div>
+                        )
+                    }
 
             {/* Le formulaire */}
             <div className="py-8">
@@ -429,63 +429,62 @@ const SignUp = (props) => {
 
                 {/* Choix de la formation */}
 
-                <div className="py-8">
-                  <div className="flex  flex-wrap mb-5">
-                    <div className="w-full">
-                      <label
-                        htmlFor="formation"
-                        className={`block text-sm font-semibold text-gray`}
-                      >
-                        Choisir une formation
-                      </label>
-                      <div className="mt-1 w-full">
-                        <select
-                          name="formation"
-                          id="formation"
-                          className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
-                          {...register('formation')}
-                          onChange={(e) => { console.log(montants[e.target.value]) }}
-                        >
-                          <option value="">Faire une selection</option>
-                          <option value="Superviseur_QHSE">Superviseur QHSE</option>
-                          <option value="Responsable_QHSE">Responsable QHSE</option>
-                          <option value="BNS_&_SI">BNS & SI</option>
-                          <option value="Logiciel_Robot">Logiciel Robot</option>
-                          <option value="Production_Pétrolière">Production Pétrolière</option>
-                          <option value="Reservoir_Pétrolier">Reservoir Pétrolier</option>
-                        </select>
-                      </div>
-                      <div className="block text-sm font-semibold text-pink-600">
-                        {errors.formation && <p>{errors.formation.message}</p>}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex  flex-wrap">
-                    <div className="w-full">
-                      <label
-                        htmlFor="type_formation"
-                        className={`block text-sm font-semibold text-gray`}
-                      >
-                        Type de formation
-                      </label>
-                      <div className="mt-1 w-full">
-                        <select
-                          name="formation"
-                          id="type_formation"
-                          className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
-                          {...register('type_formation')}
-                        >
-                          <option value="">Faire une selection</option>
-                          <option value="En_Ligne">En Ligne</option>
-                          <option value="En_Présentiel">En Présentiel</option>
-                        </select>
-                      </div>
-                      <div className="block text-sm font-semibold text-pink-600">
-                        {errors.type_formation && <p>{errors.type_formation.message}</p>}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                            <div className="py-8">
+                                <div className="flex  flex-wrap mb-5">
+                                    <div className="w-full">
+                                        <label 
+                                            htmlFor="formation" 
+                                            className={`block text-sm font-semibold text-gray`}
+                                        >
+                                            Choisir une formation
+                                        </label>
+                                        <div className="mt-1 w-full">
+                                            <select
+                                                name="formation" 
+                                                id="formation"
+                                                className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
+                                                {...register('formation')}
+                                            >
+                                                <option value="">Faire une selection</option>
+                                                <option value="Superviseur_QHSE">Superviseur QHSE</option>
+                                                <option value="Responsable_QHSE">Responsable QHSE</option>
+                                                <option value="BNS_&_SI">BNS & SI</option>
+                                                <option value="Logiciel_Robot">Logiciel Robot</option>
+                                                <option value="Production_Pétrolière">Production Pétrolière</option>
+                                                <option value="Reservoir_Pétrolier">Reservoir Pétrolier</option>
+                                            </select>
+                                        </div>
+                                        <div className="block text-sm font-semibold text-pink-600">
+                                            {errors.formation && <p>{errors.formation.message}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex  flex-wrap">
+                                    <div className="w-full">
+                                        <label 
+                                            htmlFor="type_formation" 
+                                            className={`block text-sm font-semibold text-gray`}
+                                        >
+                                            Type de formation
+                                        </label>
+                                        <div className="mt-1 w-full">
+                                            <select
+                                                name="formation" 
+                                                id="type_formation"
+                                                className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
+                                                {...register('type_formation')}
+                                            >
+                                                <option value="">Faire une selection</option>
+                                                <option value="En_Ligne">En Ligne</option>
+                                                <option value="En_Présentiel">En Présentiel</option>
+                                            </select>
+                                        </div>
+                                        <div className="block text-sm font-semibold text-pink-600">
+                                            {errors.type_formation && <p>{errors.type_formation.message}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                 <hr className='-mx-20' />
 

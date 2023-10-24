@@ -1,8 +1,8 @@
 import React from 'react'
-import { signin } from "../../actions/userActions";
-import { useDispatch } from "react-redux";
+import { signin } from "../../actions/userActions"
+import { useDispatch } from "react-redux"
 import {useForm} from 'react-hook-form'
-import { useAlert } from 'react-alert'
+import { Link } from 'react-router-dom/cjs/react-router-dom'
 
 export const SignIn = (props) => {
 
@@ -27,11 +27,20 @@ export const SignIn = (props) => {
 
 
   return (
-    <div className='flex justify-center items-center h-screen px-2'>
+    <div className='flex justify-between items-center container mx-auto h-screen px-2'>
 
-        <div className="w-[500px] border border-slate-200 rounded">
-            <div className="px-2">
+        <div className={"w-1/3"}>
+            <img 
+                src={"/images/connexionImg.jpg"} 
+                alt="" 
+
+            />
+        </div>
+
+        <div className="w-[600px] border border-slate-200 rounded z-10">
+            <div className="px-2 w-[500px] mx-auto">
                 <h1 className='text-3xl text-center text-PrimaryBlue py-6 font-bold'>Connexion</h1>
+                <span className={" block font-semibold text-center"}>Vous n'êtes pas encore inscris? <Link to={"./signup"} className={"text-blue-600"} >inscrivez-vous</Link> </span>
                 <form onSubmit={handleSubmit(handleForm)} method="post" className='py-6'>
                     <div className="w-full px-1">
                         
