@@ -14,7 +14,6 @@ export const StudentFormation = () => {
     const fetchData = async () => {
         // get the data from the api
         const response = await Axios.get(`/api/v1/student/formation/list`);
-        console.log(response.data.formations)
 
         setDatas(response.data.formations);
     };
@@ -24,7 +23,6 @@ export const StudentFormation = () => {
         await Axios.post(`/api/v1/reneval/student/formation`, {formation,montant})
         .then(res => { 
             setMessageShowBoolean(true)
-            console.log(res)
         })
         .catch(error => {
             let errorMe = error.response && error.response.data.message
@@ -58,7 +56,7 @@ export const StudentFormation = () => {
 
                 {messageShowBoolean && (
                         <div className={`bg-blue-50 border border-blue-200 text-sm text-center text-blue-600 rounded-md p-4 mb-5`}>
-                            <p>Vous serez regiriger vers le moyen de paiement dans queques secondes.</p>
+                            <p>Vous serez redirigé vers le moyen de paiement dans quelques secondes.</p>
                         </div>
                 )}
                 
@@ -70,9 +68,9 @@ export const StudentFormation = () => {
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Formation</th>
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nom-Prenom</th>
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre d'echeance</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant deja paye</th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reste a paye</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nombre d'échéance</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Montant déja payé</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reste a payé</th>
                             <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type de formation</th>
                             <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Action</th>
                         </tr>
@@ -102,7 +100,7 @@ export const StudentFormation = () => {
                                             <span className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">Chargement...</span>
                                         )
                                     ) : (
-                                        <button onClick={() => {reneval(data.formation, 100)}} className="text-blue-500 hover:text-blue-700">Payer la prochaine echeance</button>
+                                        <button onClick={() => {reneval(data.formation, data.montantAPayeParEcheance)}} className="text-blue-500 hover:text-blue-700">Payer la prochaine echeance</button>
                                     ))
                                     
                                 )}

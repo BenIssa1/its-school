@@ -60,7 +60,7 @@ export const SignIn = (props) => {
                                 Email
                             </label>
                             <div className="block text-sm font-semibold text-pink-600 mt-4">
-                            {errors.password?.type === 'required' && "Email is required"}
+                            {errors.password?.type === 'required' && "Email est requis"}
                             </div>
                             
                         </div>
@@ -82,14 +82,16 @@ export const SignIn = (props) => {
                             Mot de passe
                         </label>
                         <div className="block text-sm font-semibold text-pink-600 mt-4">
-                        {errors.password?.type === 'required' && "Password is required"}
-                        {errors.password?.type === 'minLength' && "Password is ess"}
+                        {errors.password?.type === 'required' && "Le mot de passe est requis"}
+                        {errors.password?.type === 'minLength' && "Le mot de passe doit contenir au minimum 6 caractère"}
                         </div>
                     </div>
 
                     <div className="text-center">
                         <button   type="submit" className='py-2 px-4 bg-PrimaryBlue text-white rounded shadow-sm tracking-wider text-sm font-semibold hover:bg-transparent hover:shadow-2xl hover:text-PrimaryBlue transition duration-300'>Connexion</button>
                     </div>
+
+                    <span className={" block font-semibold text-center py-2"}><Link to={"./forgot"} className={"text-blue-600"} >Mot de passe oublié!</Link> </span>
                 </form>
             </div>
         </div>

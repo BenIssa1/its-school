@@ -12,12 +12,12 @@ import { useDispatch } from "react-redux";
 const schema = yup.object().shape({
   /* cni input validation */
   cni: yup.mixed()
-    .test('required', "You need to provide a file cni", (value) => {
+    .test('required', "Vous devez fournir un fichier cni", (value) => {
       return value && value.length
     })
-    .test("type", "We only support jpeg", function (value) {
+    .test("type", "Nous ne prenons en charge que les fichiers JPEG, PNG, JPG, PDF", function (value) {
       if (value && value[0]) {
-        if (value[0].type === "image/jpeg" || value[0].type === "image/png" || value[0].type === "image/jpg") {
+        if (value[0].type === "image/jpeg" || value[0].type === "image/png" || value[0].type === "image/jpg" || value[0].type === "application/pdf") {
 
           return true;
         }
@@ -25,12 +25,12 @@ const schema = yup.object().shape({
     }),
   /* bulletin input validation */
   bulletin: yup.mixed()
-    .test('required', "You need to provide a file bulettin", (value) => {
+    .test('required', "Vous devez fournir un fichier bulletin", (value) => {
       return value && value.length
     })
-    .test("type", "We only support jpeg", function (value) {
+    .test("type", "Nous ne prenons en charge que les fichiers JPEG, PNG, JPG, PDF", function (value) {
       if (value && value[0]) {
-        if (value[0].type === "image/jpeg" || value[0].type === "image/png" || value[0].type === "image/jpg") {
+        if (value[0].type === "image/jpeg" || value[0].type === "image/png" || value[0].type === "image/jpg" || value[0].type === "application/pdf") {
 
           return true;
         }
@@ -38,31 +38,31 @@ const schema = yup.object().shape({
     }),
   /* nname input validation */
   name: yup.string()
-    .required("Name is required"),
+    .required("Nom est requis"),
   /* email input validation */
   email: yup.string()
-    .required("Email is required"),
+    .required("Email est requis"),
   /* prenom input validation */
   prenom: yup.string()
-    .required("Prenom is required"),
+    .required("Prenom est requis"),
   /* ville input validation */
   ville: yup.string()
-    .required("Ville is required"),
+    .required("Ville est requis"),
   /* numero input validation */
   numero: yup.string()
-    .required("Numero is required"),
+    .required("Numero est requis"),
   formation: yup.string()
-    .required("Formation is required"),
+    .required("Formation est requis"),
   type_formation: yup.string()
-    .required("Type of formation is required"),
+    .required("Type de la formation est requis"),
   /* password input validation */
   password: yup.string()
-    .required("Password is required")
-    .min(6, 'Password must be at 3 char long'),
+    .required("Mot de passe est requis")
+    .min(6, 'Le mot de passe doit comporter 6 caractères'),
   /* comfirmPwd input validation */
   comfirmPwd: yup.string()
-    .required("Password comfirm is required")
-    .oneOf([yup.ref('password')], 'Passwords does not match')
+    .required("confirme mot de passe est requis")
+    .oneOf([yup.ref('password')], 'Les mots de passe ne correspondent pas')
 });
 
 const SignUp = (props) => {
@@ -72,13 +72,14 @@ const SignUp = (props) => {
     resolver: yupResolver(schema)
   });
 
-  const montants = {
-    Superviseur_QHSE: 150.000
-  }
-
+  /* States */
   const [message, setMesssage] = useState(null)
   const [messageShowBoolean, setMessageShowBoolean] = useState(false)
   const [buttonShowBoolean, setButtonShowBoolean] = useState(false)
+
+  const [formationChoice, setFomationChoice] = useState(null)
+  const [numberEcheance, setNumberEcheance] = useState("")
+  const [priceEcheance, setPriceEcheance] = useState("")
 
   /* Import useDispatch */
   const dispatch = useDispatch();
@@ -86,66 +87,75 @@ const SignUp = (props) => {
   /* HandleForm Submit Function */
   const handleForm = async (data) => {
 
-    setButtonShowBoolean(true)
-    setMesssage(null)
 
-    /* form inputs variables */
-    const {
-      name,
-      email,
-      password,
-      prenom,
-      numero,
-      numero_rue,
-      ville,
-      region,
-      code_postal,
-      cni,
-      bulletin
-    } = data
+    if (priceEcheance == 'NaN' || priceEcheance == '') {
+      window.alert("Choisir le nombre d'echeance")
+    } else {
+      setButtonShowBoolean(true)
+      setMesssage(null)
+  
+      /* form inputs variables */
+      const {
+        name,
+        email,
+        password,
+        prenom,
+        numero,
+        numero_rue,
+        ville,
+        region,
+        code_postal,
+        cni,
+        bulletin
+      } = data
+  
+      /* form data variable */
+      const formaData = new FormData()
+      formaData.append('name', name)
+      formaData.append('email', email)
+      formaData.append('password', password)
+  
+      formaData.append('prenom', prenom)
+      formaData.append('numero', numero)
+      formaData.append('numero_rue', numero_rue)
+      formaData.append('ville', ville)
+      formaData.append('region', region)
+      formaData.append('code_postal', code_postal)
+      formaData.append('cni', cni[0])
+      formaData.append('bulletin', bulletin[0])
+      console.log(priceEcheance)
+      /* Fixer le prix de la formation a trois chiffres */
+      let priceTotal = (priceEcheance * numberEcheance).toFixed(3)
+      let pricEcheance = (priceEcheance * 1).toFixed(3)
 
-    /* form data variable */
-    const formaData = new FormData()
-    formaData.append('name', name)
-    formaData.append('email', email)
-    formaData.append('password', password)
+      formaData.append('formation', 'Superviseur_QHSE')
+      formaData.append('type_formation', 'En_Ligne')
+      formaData.append('montant', parseInt(priceTotal.replace('.', '')))
+      formaData.append('montantAPaye', parseInt(pricEcheance.replace('.', '')))
+      formaData.append('montantPaye', 0)
+      formaData.append('nombreEcheance', numberEcheance)
+      formaData.append('nombreEcheancePaye', 0)
 
-    formaData.append('prenom', prenom)
-    formaData.append('numero', numero)
-    formaData.append('numero_rue', numero_rue)
-    formaData.append('ville', ville)
-    formaData.append('region', region)
-    formaData.append('code_postal', code_postal)
-    formaData.append('cni', cni[0])
-    formaData.append('bulletin', bulletin[0])
+      /* Call api register */
+      axios.post('/api/v1/register', formaData)
+        .then(res => {
+          setMessageShowBoolean(true)
 
-    formaData.append('formation', 'Superviseur_QHSE')
-    formaData.append('type_formation', 'En_Ligne')
-    formaData.append('montant', 200)
-    formaData.append('montantAPaye', 100)
-    formaData.append('montantPaye', 0)
-    formaData.append('nombreEcheance', 2)
-    formaData.append('nombreEcheancePaye', 0)
+          setTimeout(function () {
+            /* dispatch action for signin */
+            dispatch(signinSignup(email, password));
+          }, 15000)
 
-    /* Call api register */
-    axios.post('/api/v1/register', formaData)
-      .then(res => {
-        setMessageShowBoolean(true)
-
-        setTimeout(function () {
-          /* dispatch action for signin */
-          dispatch(signinSignup(email, password));
-        }, 15000)
-
-        console.log(res)
-      })
-      .catch(error => {
-        let errorMe = error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message
-        setMesssage(errorMe)
-        setButtonShowBoolean(false)
-      })
+          /* console.log(res) */
+        })
+        .catch(error => {
+          let errorMe = error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+          setMesssage(errorMe)
+          setButtonShowBoolean(false)
+        })
+    }
   }
 
 
@@ -164,13 +174,13 @@ const SignUp = (props) => {
               {message && <p>{message}</p>}
             </div>
 
-                    {
-                        messageShowBoolean && (
-                            <div className="bg-blue-50 border border-blue-200 text-sm text-blue-600 rounded-md p-4 mt-5" role="alert">
-                                Vous serez regiriger vers le moyen de paiement dans queques secondes.
-                            </div>
-                        )
-                    }
+            {
+              messageShowBoolean && (
+                <div className="bg-blue-50 border border-blue-200 text-sm text-blue-600 rounded-md p-4 mt-5" role="alert">
+                  Vous serez redirigé vers le moyen de paiement dans quelques secondes.
+                </div>
+              )
+            }
 
             {/* Le formulaire */}
             <div className="py-8">
@@ -429,62 +439,132 @@ const SignUp = (props) => {
 
                 {/* Choix de la formation */}
 
-                            <div className="py-8">
-                                <div className="flex  flex-wrap mb-5">
-                                    <div className="w-full">
-                                        <label 
-                                            htmlFor="formation" 
-                                            className={`block text-sm font-semibold text-gray`}
-                                        >
-                                            Choisir une formation
-                                        </label>
-                                        <div className="mt-1 w-full">
-                                            <select
-                                                name="formation" 
-                                                id="formation"
-                                                className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
-                                                {...register('formation')}
-                                            >
-                                                <option value="">Faire une selection</option>
-                                                <option value="Superviseur_QHSE">Superviseur QHSE</option>
-                                                <option value="Responsable_QHSE">Responsable QHSE</option>
-                                                <option value="BNS_&_SI">BNS & SI</option>
-                                                <option value="Logiciel_Robot">Logiciel Robot</option>
-                                                <option value="Production_Pétrolière">Production Pétrolière</option>
-                                                <option value="Reservoir_Pétrolier">Reservoir Pétrolier</option>
-                                            </select>
-                                        </div>
-                                        <div className="block text-sm font-semibold text-pink-600">
-                                            {errors.formation && <p>{errors.formation.message}</p>}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex  flex-wrap">
-                                    <div className="w-full">
-                                        <label 
-                                            htmlFor="type_formation" 
-                                            className={`block text-sm font-semibold text-gray`}
-                                        >
-                                            Type de formation
-                                        </label>
-                                        <div className="mt-1 w-full">
-                                            <select
-                                                name="formation" 
-                                                id="type_formation"
-                                                className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
-                                                {...register('type_formation')}
-                                            >
-                                                <option value="">Faire une selection</option>
-                                                <option value="En_Ligne">En Ligne</option>
-                                                <option value="En_Présentiel">En Présentiel</option>
-                                            </select>
-                                        </div>
-                                        <div className="block text-sm font-semibold text-pink-600">
-                                            {errors.type_formation && <p>{errors.type_formation.message}</p>}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                <div className="py-8">
+                  <div className="flex  flex-wrap mb-5">
+                    <div className="w-full">
+                      <label
+                        htmlFor="formation"
+                        className={`block text-sm font-semibold text-gray`}
+                      >
+                        Choisir une formation
+                      </label>
+                      <div className="mt-1 w-full">
+                        <select
+                          name="formation"
+                          id="formation"
+                          className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
+                          {...register('formation')}
+                          onChange={(e) => {
+                            setFomationChoice(e.target.value);
+                            setNumberEcheance("");
+                            setPriceEcheance("");
+                          }}
+                        >
+                          <option value="">Faire une selection</option>
+                          <option value="Superviseur_QHSE">Superviseur QHSE</option>
+                          <option value="Responsable_QHSE">Responsable QHSE</option>
+                          {/*                           <option value="BNS_&_SI">BNS & SI</option>
+                          <option value="Logiciel_Robot">Logiciel Robot</option>
+                          <option value="Production_Pétrolière">Production Pétrolière</option>
+                          <option value="Reservoir_Pétrolier">Reservoir Pétrolier</option> */}
+                        </select>
+                      </div>
+                      <div className="block text-sm font-semibold text-pink-600">
+                        {errors.formation && <p>{errors.formation.message}</p>}
+                      </div>
+                    </div>
+                  </div>
+
+                  {formationChoice && (
+                    <div className="flex  flex-wrap mb-5">
+                      <div className="w-full">
+                        <label
+                          htmlFor="echeance"
+                          className={`block text-sm font-semibold text-gray`}
+                        >
+                          Choisir le nombre d'echeance
+                        </label>
+                        <div className="mt-1 w-full">
+                          <select
+                            name="echeance"
+                            id="echeance"
+                            value={numberEcheance}
+                            className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
+                            onChange={(e) => {
+                              setNumberEcheance(e.target.value);
+
+                              if (formationChoice == 'Superviseur_QHSE') {
+                                var montant = 150.000
+                              } else if (formationChoice == 'Responsable_QHSE') {
+                                var montant = 300.000
+                              }
+
+                              let monantFrais = montant + (montant * 0.035)
+                              let monantFraisAnRound = monantFrais / parseInt(e.target.value)
+
+                              setPriceEcheance(
+                                monantFraisAnRound.toFixed(3)
+                              )
+                            }}
+                          >
+                            <option value="">Faire une selection</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {formationChoice && priceEcheance && (
+                    <div className="flex  flex-wrap mb-5">
+                      <div className="w-full">
+                        <label
+                          htmlFor="echeance"
+                          className={`block text-sm font-semibold text-gray`}
+                        >
+                          Prix par echéance
+                        </label>
+                        <input
+                          type="text"
+                          name="zipCode"
+                          id="zipCode"
+                          value={priceEcheance}
+                          disabled
+                          placeholder='Enter your input here'
+                          className='w-full px-2 py-2 border border-SecondaryGray shadow-sm rounded text-gray placeholder-transparent focus:outline-none focus:ring focus:ring-indigo-300 peer'
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex  flex-wrap">
+                    <div className="w-full">
+                      <label
+                        htmlFor="type_formation"
+                        className={`block text-sm font-semibold text-gray`}
+                      >
+                        Type de formation
+                      </label>
+                      <div className="mt-1 w-full">
+                        <select
+                          name="formation"
+                          id="type_formation"
+                          className='appearance-none w-full border border-SecondaryGray px-4 py-2 rounded shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-300'
+                          {...register('type_formation')}
+                        >
+                          <option value="">Faire une selection</option>
+                          <option value="En_Ligne">En Ligne</option>
+                          <option value="En_Présentiel">En Présentiel</option>
+                        </select>
+                      </div>
+                      <div className="block text-sm font-semibold text-pink-600">
+                        {errors.type_formation && <p>{errors.type_formation.message}</p>}
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
                 <hr className='-mx-20' />
 

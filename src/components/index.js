@@ -9,10 +9,14 @@ import Courses from "./container/courses/Courses";
 import SignUp from "./Register/SignUp";
 import RegisterFormation from "./RegisterFormation/RegisterFormation";
 import { SignIn } from "./SignIn/SignIn";
+import { ForgotPassword } from "./ResetPassword/ForgortPassword";
+import { ResetPassword } from "./ResetPassword/ResetPassword";
 import { PrivateRoute } from "../utils/PrivateRoute";
 import { PrivateRouteUnauthencited } from "../utils/PrivateRouteUnauthencited";
 import { StudentFormation } from "../components/formation/StudentFormation";
 import Profile from "../components/profile/Profile";
+import { PrivateRouteAdmin } from "../utils/PrivateRouteAdmin";
+import { AdminStudentFormation } from "../components/formation/AdminStudentFormation";
 export {
     NavBar, 
     About, 
@@ -28,5 +32,9 @@ export {
     PrivateRoute,
     PrivateRouteUnauthencited,
     StudentFormation,
-    Profile
+    Profile,
+    PrivateRouteAdmin,
+    AdminStudentFormation,
+    ForgotPassword,
+    ResetPassword
 }
