@@ -21,9 +21,9 @@ const About = () => {
 
             {/*  */}
           </p>
-          <button className='py-3 px-3 text-sm border border-solid border-white hover:bg-white rounded-lg font-bold text-white hover:text-PrimaryBlue transition duration-200'>
+          {/* <button className='py-3 px-3 text-sm border border-solid border-white hover:bg-white rounded-lg font-bold text-white hover:text-PrimaryBlue transition duration-200'>
             Know More
-          </button>
+          </button> */}
         </div>
       </div>
 
@@ -41,9 +41,9 @@ const About = () => {
 
             {/*  */}
           </p>
-          <button className='py-3 px-3 text-sm border border-solid border-white hover:bg-white rounded-lg font-bold text-white hover:text-PrimaryBlue transition duration-200'>
+          {/* <button className='py-3 px-3 text-sm border border-solid border-white hover:bg-white rounded-lg font-bold text-white hover:text-PrimaryBlue transition duration-200'>
             Know More
-          </button>
+          </button> */}
         </div>
 
         <div className="border-[3px] border-solid border-SkyBlue rounded-lg ">

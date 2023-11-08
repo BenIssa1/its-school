@@ -2,6 +2,7 @@ import React from 'react';
 import hero from "../../assets/hero.png";
 import { logos } from "../../Data";
 import {motion} from "framer-motion";
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 // les constantes pour l'animation motion
 const Home = () => {
@@ -41,12 +42,12 @@ const Home = () => {
               Représenter en Côte d'Ivoire dépuis octobre 2019, International Training School (IT SCHOOL) & Dynamique Group Sarl (ITS & DG), est un cabinet de formation professionnel international.
             </p>
             <div className="mt-6">
-              <button className='px-6 py-3 font-bold text-white hover:border hover:border-solid hover:border-white bg-SkyBlue hover:bg-transparent rounded-lg mr-4 text-sm transition duration-300'>
+              <Link to={"signup"} className='px-6 py-3 font-bold text-white hover:border hover:border-solid hover:border-white bg-SkyBlue hover:bg-transparent rounded-lg mr-4 text-sm transition duration-300'>
                 Démarer
-              </button>
-              <button className='px-6 py-3 font-bold text-white border border-solid border-white hover:border-SkyBlue hover:bg-SkyBlue rounded-lg text-sm transition duration-300'>
+              </Link>
+              {/* <button className='px-6 py-3 font-bold text-white border border-solid border-white hover:border-SkyBlue hover:bg-SkyBlue rounded-lg text-sm transition duration-300'>
                 Découvrir
-              </button>
+              </button> */}
             </div>
           </div>
           {/* Banner img */}

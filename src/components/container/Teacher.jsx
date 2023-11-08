@@ -1,6 +1,6 @@
 import React from 'react';
-import student1 from "../../assets/student1.png";
-import student2 from "../../assets/student2.png";
+import student1 from "../../assets/Techniciene.jpg";
+import student2 from "../../assets/Hillary.jpg";
 import { accordions } from "../../Data";
 import Accordion from './courses/Accordion';
 
@@ -15,7 +15,7 @@ const Teacher = () => {
             Témoignage <span className='text-SkyBlue'>d'Etudiants</span> <br /> d'ITSchool
           </div>
           <p className='text-sm leading-7 text-PrimaryGray mb-5'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus obcaecati hic consequatur? Cumque, porro ipsa. Laboriosam perspiciatis voluptatum odit et quibusdam commodi consequuntur, maiores sed non inventore accusantium illum corporis.
+            La formation de superviseur QHSE à ITSchool a été une expérience transformative. Les formateurs compétents ont transmis leur savoir avec clarté. Les cours interactifs et les exercices pratiques ont renforcé ma compréhension des principes de la supervision QHSE. L'environnement d'apprentissage collaboratif et le soutien de l'équipe pédagogique ont été remarquables. Je me sens préparée et confiante pour relever les défis professionnels en tant que superviseur QHSE. Je recommande ITSchool à tous ceux qui recherchent une formation de qualité dans ce domaine.
           </p>
 
         </div>
@@ -30,7 +30,7 @@ const Teacher = () => {
             Témoignage <span className='text-SkyBlue'>d'Etudiant</span> <br /> d'ITSchool
           </div>
           <p className='text-sm leading-7 text-PrimaryGray mb-5'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus obcaecati hic consequatur? Cumque, porro ipsa. Laboriosam perspiciatis voluptatum odit et quibusdam commodi consequuntur, maiores sed non inventore accusantium illum corporis.
+          La formation de superviseur QHSE à ITSchool a dépassé toutes mes attentes. Les formateurs experts, les cours interactifs et les ressources de qualité m'ont permis d'acquérir les compétences nécessaires pour exceller dans ma carrière. Je recommande vivement ITSchool à tous ceux qui cherchent une formation de qualité dans le domaine de la supervision QHSE.
           </p>
           
         </div>
