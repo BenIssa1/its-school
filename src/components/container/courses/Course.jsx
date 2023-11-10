@@ -3,7 +3,7 @@ import {AiOutlineUser, AiOutlineStar} from "react-icons/ai";
 
 const Course = ({image, category, title, participants, rating, price}) => {
   return (
-    <div className='p-2 shadow-lg min-w-[15rem] bg-white gap-1 rounded-md'>
+    <div className='p-2 flex flex-col justify-between shadow-lg min-w-[15rem] bg-white gap-1 rounded-md'>
         <img src={image} alt=""/>
         <div className='mt-2 text-xs text-SkyBlue'> {category} </div>
         <div className='text-sm mt-2 font-bold'> {title} </div>

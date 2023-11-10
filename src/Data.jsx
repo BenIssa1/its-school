@@ -132,7 +132,7 @@ export const courses = [
   },
   {
     id: 7,
-    image: courses7,
+    image: courses4,
     category: "BTP & Architecture",
     title: "Responsable QHSE",
     rating: 4.9,

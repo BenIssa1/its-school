@@ -14,16 +14,15 @@ const Footer = () => {
         <div className="">
           <div className="font-bold mb-6">Get Started</div>
           <p className='text-sm leading-7'>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem quisquam quis perferendis voluptates sed quod doloremque similique beatae sequi ab?
+            Rejoignez-nous chez International Training School & Dynamique Group en Côte d'Ivoire pour bénéficier de formations professionnelles de qualité et développer vos compétences.
           </p>
         </div>
         <div className="">
           <div className="font-bold mb-8">Services</div>
           <div className="flex flex-col gap-4">
-            <a href="" className='text-sm hover:text-PrimaryBlue hover:font-semibold transition duration-200'>Web Development</a>
-            <a href="" className='text-sm hover:text-PrimaryBlue hover:font-semibold transition duration-200'>Web Design</a>
-            <a href="" className='text-sm hover:text-PrimaryBlue hover:font-semibold transition duration-200'>Science</a>
-            <a href="" className='text-sm hover:text-PrimaryBlue hover:font-semibold transition duration-200'>Digital Marketing</a>
+            <a href="" className='text-sm hover:text-PrimaryBlue hover:font-semibold transition duration-200'>Superviseur QHSE</a>
+            <a href="" className='text-sm hover:text-PrimaryBlue hover:font-semibold transition duration-200'>Responsable QHSE</a>
+            <a href="" className='text-sm hover:text-PrimaryBlue hover:font-semibold transition duration-200'>BNS & SI</a>
           </div>
         </div>
         <div className="">
@@ -38,7 +37,7 @@ const Footer = () => {
         </div>
         <div className="">
           <div className="font-bold mb-6">Nous Suivre</div>
-          <div className="text-sm mb-4">Internationaltrainingschoolc@gmail.com</div>
+          <div className="text-sm mb-4">Internationaltrainingschoolci@gmail.com</div>
           <div className="text-sm">+225 07 773 147 81 / 07 790 745 47</div>
           <div className="flex gap-10 mt-4">
             <a href="https://www.facebook.com/profile.php?id=100063736908460&mibextid=ZbWKwL" target='_blanc' className='hover:scale-110 text-xl'>
